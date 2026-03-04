@@ -5,109 +5,199 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DICCINA - UFBA</title>
     <style>
-        :root { --blue: #004a87; --light-blue: #e3f2fd; --text: #333; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; color: var(--text); background-color: #f4f7f9; }
-        header { background: var(--blue); color: white; padding: 3rem 1rem; text-align: center; }
-        nav { background: white; padding: 1rem; sticky; top: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; position: sticky; top: 0; z-index: 100; }
-        nav a { margin: 0 15px; text-decoration: none; color: var(--blue); font-weight: bold; }
-        .container { max-width: 1100px; margin: 30px auto; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
-        h2 { border-left: 5px solid var(--blue); padding-left: 15px; color: var(--blue); margin-top: 40px; }
-        
-        /* Estilo da Tabela de Egressos */
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th { background: var(--light-blue); text-align: left; padding: 12px; }
-        td { padding: 12px; border-bottom: 1px solid #ddd; }
+        :root {
+            --preto-chumbo: #2c3031;
+            --branco-gelo: #f7fafa;
+            --roxo: #752fc8;
+            --laranja-diccina: #e6482c;
+            --amarelo-limao: #d8e128;
+        }
 
-        /* Galeria de Publicações */
-        .grid-publicacoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
-        .card-pub { border: 1px solid #eee; padding: 20px; border-radius: 8px; transition: 0.3s; }
-        .card-pub:hover { border-color: var(--blue); background: var(--light-blue); }
+        body { 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            margin: 0; 
+            color: var(--preto-chumbo); 
+            background-color: var(--branco-gelo); 
+        }
+
+        header { 
+            background: var(--preto-chumbo); 
+            color: var(--branco-gelo); 
+            padding: 3rem 1rem; 
+            text-align: center;
+            border-bottom: 5px solid var(--roxo);
+        }
+
+        .logo-container {
+            background: white;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .logo-container img {
+            max-width: 90%;
+            height: auto;
+        }
+
+        nav { 
+            background: white; 
+            padding: 1rem; 
+            position: sticky; 
+            top: 0; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+            text-align: center; 
+            z-index: 100; 
+        }
+
+        nav a { 
+            margin: 0 15px; 
+            text-decoration: none; 
+            color: var(--roxo); 
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: var(--laranja-diccina); }
+
+        .container { 
+            max-width: 1100px; 
+            margin: 30px auto; 
+            background: white; 
+            padding: 40px; 
+            border-radius: 12px; 
+        }
+
+        h2 { 
+            border-left: 8px solid var(--amarelo-limao); 
+            padding-left: 15px; 
+            color: var(--roxo); 
+            margin-top: 40px; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
         
-        .badge { font-size: 0.7rem; padding: 3px 8px; border-radius: 5px; background: #ddd; text-transform: uppercase; }
-        .status-egresso { color: #666; font-style: italic; font-size: 0.9rem; }
+        /* Tabela de Egressos Customizada */
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th { background: var(--preto-chumbo); color: white; text-align: left; padding: 15px; }
+        td { padding: 12px; border-bottom: 1px solid #eee; }
+        tr:hover { background-color: #f9f9f9; }
+
+        /* Estilo dos Membros e Publicações */
+        .card-item { 
+            border: 1px solid #eee; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin-bottom: 15px;
+            transition: transform 0.2s;
+            border-left: 4px solid var(--roxo);
+        }
+        .card-item:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        
+        .badge { 
+            font-size: 0.75rem; 
+            padding: 4px 10px; 
+            border-radius: 4px; 
+            font-weight: bold; 
+            color: white;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .badge-doutorado { background: var(--laranja-diccina); }
+        .badge-mestrado { background: var(--roxo); }
+        .badge-graduacao { background: var(--amarelo-limao); color: var(--preto-chumbo); }
+
+        footer { 
+            text-align: center; 
+            padding: 50px; 
+            background: var(--preto-chumbo); 
+            color: #888; 
+            margin-top: 50px; 
+        }
     </style>
 </head>
 <body>
 
 <header>
+    <div class="logo-container">
+        <img src="logo-diccina.png" alt="Logo DICCINA">
+    </div>
     <h1>DICCINA</h1>
     <p>Diversidade e Criticidade nas Ciências Naturais</p>
-    <p style="font-size: 0.9rem;">PPGEFHC | UFBA | UEFS</p>
+    <small>PPGEFHC | UFBA | UEFS</small>
 </header>
 
 <nav>
+    <a href="#sobre">Sobre</a>
     <a href="#membros">Membros</a>
     <a href="#egressos">Egressos</a>
-    <a href="#publicacoes">Publicações</a>
-    <a href="#agenda">Agenda de Encontros</a>
+    <a href="#publicacoes">Produção</a>
+    <a href="#agenda">Agenda</a>
 </nav>
 
 <div class="container">
     
+    <section id="sobre">
+        <h2>O Grupo</h2>
+        <p>Investigamos as relações entre ciência, sociedade e educação, pautados pela criticidade e pelo respeito à diversidade.</p>
+    </section>
+
     <section id="membros">
         <h2>Membros Atuais</h2>
-        <p>Estudantes de Graduação, Mestrado, Doutorado e Pesquisadores.</p>
-        <div class="card-pub">
-            <strong>Nome do Membro</strong> <span class="badge">Doutorado</span>
-            <p>Título da Pesquisa: "Análise da diversidade no ensino de Física."</p>
-            <a href="#">Lattes</a> | <a href="#">Apresentação (Slides)</a>
+        <div class="card-item">
+            <span class="badge badge-doutorado">Doutorado</span><br>
+            <strong>Nome do Pesquisador</strong>
+            <p>Projeto: "Título da pesquisa científica aqui."</p>
+        </div>
+        <div class="card-item">
+            <span class="badge badge-mestrado">Mestrado</span><br>
+            <strong>Nome do Estudante</strong>
+            <p>Projeto: "Título da dissertação em andamento."</p>
         </div>
     </section>
 
     <section id="egressos">
-        <h2>Histórico de Membros (Egressos)</h2>
+        <h2>Histórico (Egressos)</h2>
         <table>
             <thead>
                 <tr>
                     <th>Nome</th>
                     <th>Nível</th>
-                    <th>Entrada</th>
-                    <th>Saída</th>
-                    <th>Projeto/Título</th>
+                    <th>Período</th>
+                    <th>Trabalho Final</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Fulana de Tal</td>
-                    <td>Mestrado</td>
-                    <td>2021</td>
-                    <td>2023</td>
-                    <td>Defendeu: "Título da Dissertação aqui"</td>
+                    <td>Exemplo de Aluno</td>
+                    <td>Graduação</td>
+                    <td>2022 - 2024</td>
+                    <td>TCC sobre Diversidade na Física</td>
                 </tr>
             </tbody>
         </table>
     </section>
 
-    <section id="publicacoes">
-        <h2>Galeria de Publicações</h2>
-        <div class="grid-publicacoes">
-            <div class="card-pub">
-                <span class="badge">Artigo</span>
-                <h3>Título do Artigo Publicado</h3>
-                <p>Revista de Ensino de Ciências, 2024.</p>
-                <a href="#">Ler Artigo completo</a>
-            </div>
-            <div class="card-pub">
-                <span class="badge">Trabalho em Congresso</span>
-                <h3>Título do Trabalho no ENPEC</h3>
-                <p>Apresentado por: Nome do Aluno.</p>
-                <a href="#">Ver Slides</a>
-            </div>
-        </div>
-    </section>
-
     <section id="agenda">
-        <h2>Agenda e Pautas</h2>
-        <div class="card-pub">
-            <strong>Próximo Encontro: 10/04/2026</strong>
-            <p><strong>Pauta:</strong> Discussão sobre o capítulo 3 do livro X; Avisos sobre o próximo seminário interno.</p>
+        <h2>Agenda de Atividades</h2>
+        <div class="card-item" style="border-left-color: var(--amarelo-limao);">
+            <strong>Próximo Seminário Interno</strong>
+            <p>📅 Data: 15/05/2026 | 📍 Local: Sala 102 - PPGEFHC</p>
+            <p><em>Pauta: Discussão sobre Epistemologias Afrocentradas.</em></p>
         </div>
     </section>
 
 </div>
 
-<footer style="text-align: center; padding: 40px; color: #888;">
-    <p>Grupo de Pesquisa DICCINA - UFBA</p>
+<footer>
+    <p>&copy; 2026 DICCINA - Grupo de Pesquisa Diversidade e Criticidade nas Ciências Naturais</p>
+    <p>Universidade Federal da Bahia</p>
 </footer>
 
 </body>
